@@ -1,0 +1,9 @@
+# complied binary 
+main
+
+# object files 
+*.o
+
+# temp 
+*.out
+*.log
