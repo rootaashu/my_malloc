@@ -26,6 +26,16 @@ void *heap_start = NULL;
 
 void* own_malloc(size_t size)
 {
+	size = (size + 7) & -7;
+	Block *current = head;
+
+	while(current){
+		if (current -> free && current->size >= size){
+			current ->free =0;
+			return (void*)(current + 1);
+		}
+		current = current->next;
+	}
 	Block *block;
 	
 	block = sbrk(sizeof(Block) + size);
