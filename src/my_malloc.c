@@ -61,6 +61,12 @@ void* own_malloc(size_t size)
 
 }
 
+void *own_calloc(size_t n, size_t size){
+        void *ptr = own_malloc(n * size);
+        if (ptr) memset(ptr, 0, n*size);
+        return ptr;
+
+}
 int own_free_all()
 {
 	if(heap_start == NULL)
