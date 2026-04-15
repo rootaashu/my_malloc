@@ -4,11 +4,16 @@
 
 #define BLOCK_SIZE sizeof(Block)
 
+
+
 typedef struct Block{
 	size_t size;
 	int free ;
 	struct Block *next;
 }Block;
+
+Block *head = NULL;
+
 
 void own_free(void *ptr){
 	if (!ptr) return;
@@ -29,7 +34,7 @@ void* own_malloc(size_t size)
 
 	block ->size = size;
 	block ->free = 0;
-	block -> NULL;
+	block ->next = NULL;
 
 	if (head == NULL)
 		head = block;
