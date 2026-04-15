@@ -18,14 +18,24 @@ void own_free(void *ptr){
 
 void *heap_start = NULL;
 
-void* own_malloc(size_t length)
+void* own_malloc(size_t size)
 {
-	void *allocated_address = sbrk(length);
-	if (heap_start == NULL)
-	{
-		heap_start = allocated_address;
-	}
-	return allocated_address;
+	Block *block;
+	
+	block = sbrk(sizeof(Block) + size);
+
+	if (block ==(void*) - 1)
+		return NULL;
+
+	block ->size = size;
+	block ->free = 0;
+	block -> NULL;
+
+	if (head == NULL)
+		head = block;
+
+	return (void*)(block + 1);
+
 }
 
 int own_free_all()
