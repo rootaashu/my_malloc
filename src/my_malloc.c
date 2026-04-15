@@ -17,8 +17,9 @@ Block *head = NULL;
 
 void own_free(void *ptr){
 	if (!ptr) return;
-	Block *block = (Block *)ptr -1;
-	block ->free =1;
+
+	Block *block = (Block*)ptr - 1;
+	block ->free = 1;
 }
 
 void *heap_start = NULL;
