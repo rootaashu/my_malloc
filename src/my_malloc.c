@@ -2,6 +2,20 @@
 #include <stdio.h>
 #include <string.h>
 
+#define BLOCK_SIZE sizeof(Block)
+
+typedef struct Block{
+	size_t size;
+	int free ;
+	struct Block *next;
+}Block;
+
+void own_free(void *ptr){
+	if (!ptr) return;
+	Block *block = (Block *)ptr -1;
+	block ->free =1;
+}
+
 void *heap_start = NULL;
 
 void* own_malloc(size_t length)
