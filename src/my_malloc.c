@@ -47,9 +47,16 @@ void* own_malloc(size_t size)
 	block ->free = 0;
 	block ->next = NULL;
 
-	if (head == NULL)
+	if (head == NULL){
 		head = block;
-
+	}
+	else
+	{
+		current = head;
+		while ( current -> next)
+			current = current ->next;
+		current ->next = block;
+	}
 	return (void*)(block + 1);
 
 }
